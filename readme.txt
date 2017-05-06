@@ -30,7 +30,7 @@ Please note that Stop Forum Spam is a third-party service that I have no affilia
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/stop-spam-signups` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/stop-signup-spam` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 3. That is it. There is no settings page.
 
@@ -54,7 +54,7 @@ At this time, all this plugin does is check the registration email address again
 
 = Will your plugin ever do anything more than simply check email addresses against Stop Forum Spam’s database? =
 
-As I discover new, accessible ways to thwart spam signups, I may amend this plugin to reflect those. In the meantime, if you have any ideas, I am not opposed to [pull requests](https://github.com/lelandf/stop-signup-spam).
+As I discover new, accessible ways to thwart signup spam, I may amend this plugin to reflect those. In the meantime, if you have any ideas, I am not opposed to [pull requests](https://github.com/lelandf/stop-signup-spam).
 
 = I am confused. What is the difference between Stop Forum Spam and Stop Signup Spam? =
 Stop Forum Spam is a third-party service that maintains a database of spam reports. Stop Signup Spam is a WordPress plugin that integrates with that service.
