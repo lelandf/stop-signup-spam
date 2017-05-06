@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Stop Spam Signups
-Description: Check email addresses from new registrations against the Stop Forum Spam database
+Plugin Name: Stop Signup Spam
+Description: Check email addresses from new user registrations against the Stop Forum Spam database
 Version: 0.1
 Author: Leland Fiegel
 Author URI: https://leland.me/
@@ -10,40 +10,36 @@ License URI: LICENSE
 */
 
 // Core wp-register.php integration
-function lelandf_stop_spam_signups_wp( $errors, $sanitized_user_login, $user_email ) {
-
+function lelandf_stop_signup_spam_wp( $errors, $sanitized_user_login, $user_email ) {
 	// Do not run if email is not set
 	if ( $user_email ) {
 
-		if ( lelandf_is_spam_signup( $user_email ) ) {
-			$errors->add( 'likely_spammer', __( '<strong>ERROR</strong>: Cannot register with this email address. Please contact site administrator for assistance.', 'stop-spam-signups' ) );
+		if ( lelandf_is_signup_spam( $user_email ) ) {
+			$errors->add( 'likely_spammer', __( '<strong>ERROR</strong>: Cannot register with this email address. Please contact site administrator for assistance.', 'stop-signup-spam' ) );
 		}
 
 	}
 
 	return $errors;
 }
-add_filter( 'registration_errors', 'lelandf_stop_spam_signups_wp', 10, 3 );
+add_filter( 'registration_errors', 'lelandf_stop_signup_spam_wp', 10, 3 );
 
 // Restrict Content Pro integration
-function lelandf_stop_spam_signups_rcp( $user ) {
-
+function lelandf_stop_signup_spam_rcp( $user ) {
 	// Do not run if email is not set
 	if ( $user['email'] ) {
 
-		if ( lelandf_is_spam_signup( $user['email'] ) ) {
-			rcp_errors()->add( 'likely_spammer', __( 'Cannot register with this email address. Please contact site administrator for assistance.', 'stop-spam-signups' ), 'register' );
+		if ( lelandf_is_signup_spam( $user['email'] ) ) {
+			rcp_errors()->add( 'likely_spammer', __( 'Cannot register with this email address. Please contact site administrator for assistance.', 'stop-signup-spam' ), 'register' );
 		}
 
 		return $user;
-
 	}
-
 }
-add_filter( 'rcp_user_registration_data', 'lelandf_stop_spam_registrations_rcp' );
+add_filter( 'rcp_user_registration_data', 'lelandf_stop_signup_spam_rcp' );
 
 // Condititional function so we don't repeat ourselves in every integration
-function lelandf_is_spam_signup( $email ) {
+function lelandf_is_signup_spam( $email ) {
 	// Stop Forum Spam API URL
 	$url = 'http://api.stopforumspam.org/api';
 

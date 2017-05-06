@@ -1,4 +1,4 @@
-=== Stop Spam Signups ===
+=== Stop Signup Spam ===
 Contributors: lelandf
 Tags: spam
 Requires at least: 2.7.0
@@ -11,11 +11,11 @@ Check email addresses from new registrations against the Stop Forum Spam databas
 
 == Description ==
 
-Stop Spam Signups will prevent user registration of anyone trying to sign up with an the email address that has been reported to [Stop Forum Spam](http://stopforumspam.com/).
+Stop Signup Spam will prevent user registration of anyone trying to sign up with an the email address that has been reported to [Stop Forum Spam](http://stopforumspam.com/).
 
 Contrary to what the name implies, Stop Forum Spam can be used with any web service, not just forums.
 
-At this time, Stop Spam Signups integrates with:
+At this time, Stop Signup Spam integrates with:
 
 * The core WordPress registration form
 * Restrict Content Pro
@@ -56,8 +56,11 @@ At this time, all this plugin does is check the registration email address again
 
 As I discover new, accessible ways to thwart spam signups, I may amend this plugin to reflect those. In the meantime, if you have any ideas, I am not opposed to [pull requests](https://github.com/lelandf/stop-spam-signups).
 
-= I am confused. What is the difference between Stop Forum Spam and Stop Spam Signups? =
-Stop Forum Spam is a third-party service that maintains a database of spam reports. Stop Spam Signups is a WordPress plugin that integrates with that service.
+= I am confused. What is the difference between Stop Forum Spam and Stop Signup Spam? =
+Stop Forum Spam is a third-party service that maintains a database of spam reports. Stop Signup Spam is a WordPress plugin that integrates with that service.
+
+= Shouldn’t “Sign Up” be two words? =
+No. “Sign Up” is a verb. “Signup” can be a noun or adjective. In the context of “Stop Signup Spam,” “signup” is an adjective, describing the noun “spam.”
 
 == Changelog ==
 
