@@ -46,7 +46,7 @@ No. Just deactivate the plugin to temporary disable it.
 
 = I use another plugin to handle registrations to my WordPress site. Will you integrate with it? =
 
-Please understand this is a free plugin, which I built out of necessity because spammers were creating free accounts on a Restrict Content Pro-powered membership membership site that I support. I do not have time to integrate with every other membership plugin under the sun. With that said, I am not opposed to [pull requests](https://github.com/lelandf/stop-spam-signups) if you would like to contribute an integration of your own.
+Please understand that this is a free plugin, which I built out of necessity because spammers were flooding my RCP-powered membership site with bogus registrations. I do not have time to integrate with every other membership plugin under the sun. With that said, I am not opposed to [pull requests](https://github.com/lelandf/stop-spam-signups) if you would like to contribute an integration of your own.
 
 = A spammer signed up to my site even though this plugin was active. Why? =
 

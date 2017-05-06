@@ -13,11 +13,9 @@ License URI: LICENSE
 function lelandf_stop_signup_spam_wp( $errors, $sanitized_user_login, $user_email ) {
 	// Do not run if email is not set
 	if ( $user_email ) {
-
 		if ( lelandf_is_signup_spam( $user_email ) ) {
 			$errors->add( 'likely_spammer', __( '<strong>ERROR</strong>: Cannot register with this email address. Please contact site administrator for assistance.', 'stop-signup-spam' ) );
 		}
-
 	}
 
 	return $errors;
@@ -28,7 +26,6 @@ add_filter( 'registration_errors', 'lelandf_stop_signup_spam_wp', 10, 3 );
 function lelandf_stop_signup_spam_rcp( $user ) {
 	// Do not run if email is not set
 	if ( $user['email'] ) {
-
 		if ( lelandf_is_signup_spam( $user['email'] ) ) {
 			rcp_errors()->add( 'likely_spammer', __( 'Cannot register with this email address. Please contact site administrator for assistance.', 'stop-signup-spam' ), 'register' );
 		}
