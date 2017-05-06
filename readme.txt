@@ -24,9 +24,9 @@ By installing this plugin, you consent to an API call sent from your WordPress s
 
 It is a similar concept to [Akismet](https://wordpress.org/plugins/akismet/), except instead of checking for blog comment spam, it checks for user signup spam.
 
-The plugin does not log any user registration info. Any data sent to Stop Forum Spam would fall under their [privacy policy](https://www.stopforumspam.com/privacy).
-
 Unlike Akismet, no API key is required to query Stop Forum Spam’s database. Partly because of this, I decided not to include a settings page in the Stop Signup Spam plugin. Just activate and you are all set.
+
+The plugin does not log any user registration info. Any data sent to Stop Forum Spam would fall under their [privacy policy](https://www.stopforumspam.com/privacy).
 
 Please note that Stop Forum Spam is a third-party service that I have no affiliation with. I just found it, could not find any existing WordPress plugins that worked with it, and built one myself.
 
