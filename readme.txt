@@ -46,7 +46,7 @@ No. Just deactivate the plugin to temporary disable it.
 
 = I use another plugin to handle registrations to my WordPress site. Will you integrate with it? =
 
-Please understand that this is a free plugin, which I built out of necessity because spammers were flooding my RCP-powered membership site with bogus registrations. I do not have time to integrate with every other membership plugin under the sun. With that said, I am not opposed to [pull requests](https://github.com/lelandf/stop-spam-signups) if you would like to contribute an integration of your own.
+Please understand that this is a free plugin, which I built out of necessity because spammers were flooding my RCP-powered membership site with bogus registrations. I do not have time to integrate with every other membership plugin under the sun. With that said, I am not opposed to [pull requests](https://github.com/lelandf/stop-signup-spam) if you would like to contribute an integration of your own.
 
 = A spammer signed up to my site even though this plugin was active. Why? =
 
@@ -54,7 +54,7 @@ At this time, all this plugin does is check the registration email address again
 
 = Will your plugin ever do anything more than simply check email addresses against Stop Forum Spam’s database? =
 
-As I discover new, accessible ways to thwart spam signups, I may amend this plugin to reflect those. In the meantime, if you have any ideas, I am not opposed to [pull requests](https://github.com/lelandf/stop-spam-signups).
+As I discover new, accessible ways to thwart spam signups, I may amend this plugin to reflect those. In the meantime, if you have any ideas, I am not opposed to [pull requests](https://github.com/lelandf/stop-signup-spam).
 
 = I am confused. What is the difference between Stop Forum Spam and Stop Signup Spam? =
 Stop Forum Spam is a third-party service that maintains a database of spam reports. Stop Signup Spam is a WordPress plugin that integrates with that service.
