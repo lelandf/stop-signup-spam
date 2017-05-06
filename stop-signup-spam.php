@@ -10,7 +10,7 @@ License URI: LICENSE
 */
 
 /**
- * Adds integration to any core WordPress registration form, like the one at wp-register.php
+ * Adds integration to any core WordPress registration form, like the one at /wp-login.php?action=register
  */
 function lelandf_stop_signup_spam_wp( $errors, $sanitized_user_login, $user_email ) {
 	// Do not run if email is not set
