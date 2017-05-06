@@ -13,21 +13,17 @@ License URI: LICENSE
  * Adds integration to any core WordPress registration form, like the one at wp-register.php
  */
 function lelandf_stop_signup_spam_wp( $errors, $sanitized_user_login, $user_email ) {
-
 	// Do not run if email is not set
 	if ( $user_email ) {
-
 		$ip = lelandf_stop_signup_spam_get_ip();
 
 		// Add error if conditional returns true
 		if ( lelandf_is_signup_spam( $user_email, $ip ) ) {
 			$errors->add( 'likely_spammer', __( '<strong>ERROR</strong>: Cannot register. Please contact site administrator for assistance.', 'stop-signup-spam' ) );
 		}
-
 	}
 
 	return $errors;
-
 }
 add_filter( 'registration_errors', 'lelandf_stop_signup_spam_wp', 10, 3 );
 
@@ -36,10 +32,8 @@ add_filter( 'registration_errors', 'lelandf_stop_signup_spam_wp', 10, 3 );
  * @url https://restrictcontentpro.com/
  */
 function lelandf_stop_signup_spam_rcp( $user ) {
-
 	// Do not run if email is not set
 	if ( $user['email'] ) {
-
 		$ip = lelandf_stop_signup_spam_get_ip();
 
 		// Add error if conditional returns true
@@ -48,9 +42,7 @@ function lelandf_stop_signup_spam_rcp( $user ) {
 		}
 
 		return $user;
-
 	}
-
 }
 add_filter( 'rcp_user_registration_data', 'lelandf_stop_signup_spam_rcp' );
 
@@ -58,7 +50,6 @@ add_filter( 'rcp_user_registration_data', 'lelandf_stop_signup_spam_rcp' );
  * Conditional function to check for signup spam, so we don't have to repeat ourselves with every integration
  */
 function lelandf_is_signup_spam( $email, $ip ) {
-
 	// Stop Forum Spam API URL
 	$url = 'http://api.stopforumspam.org/api';
 
@@ -83,7 +74,6 @@ function lelandf_is_signup_spam( $email, $ip ) {
 	} else {
 		return false;
 	}
-
 }
 
 /**
