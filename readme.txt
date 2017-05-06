@@ -59,9 +59,6 @@ As I discover new, accessible ways to thwart spam signups, I may amend this plug
 = I am confused. What is the difference between Stop Forum Spam and Stop Signup Spam? =
 Stop Forum Spam is a third-party service that maintains a database of spam reports. Stop Signup Spam is a WordPress plugin that integrates with that service.
 
-= Shouldn’t “Sign Up” be two words? =
-No. “Sign Up” is a verb. “Signup” can be a noun or adjective. In the context of “Stop Signup Spam,” “signup” is an adjective, describing the noun “spam.”
-
 == Changelog ==
 
 = 1.0 =
