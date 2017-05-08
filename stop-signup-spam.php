@@ -2,7 +2,7 @@
 /*
 Plugin Name: Stop Signup Spam
 Description: Check user registration info against the Stop Forum Spam database before allowing registration
-Version: 1.0.0
+Version: 1.0.1
 Author: Leland Fiegel
 Author URI: https://leland.me/
 Text Domain: stop-signup-spam
@@ -54,7 +54,7 @@ function lelandf_is_signup_spam( $email, $ip ) {
 	// Stop Forum Spam API URL
 	$url = 'http://api.stopforumspam.org/api';
 
-	// Build data array (send email and IP address to Stop Forum Spem)
+	// Build data array (send email and IP address to Stop Forum Spam)
 	$data = array(
 		'email' => $email,
 		'ip'    => $ip,
@@ -84,8 +84,6 @@ function lelandf_is_signup_spam( $email, $ip ) {
 function lelandf_stop_signup_spam_get_ip() {
 	if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
 		$ip = $_SERVER['HTTP_CLIENT_IP'];
-	} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 	} else {
 		$ip = $_SERVER['REMOTE_ADDR'];
 	}

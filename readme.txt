@@ -3,7 +3,7 @@ Contributors: lelandf
 Tags: spam
 Requires at least: 2.7.0
 Tested up to: 4.7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: LICENSE
 
@@ -46,7 +46,7 @@ No. I am not affiliated with Stop Forum Spam. You can request removal on their [
 
 = I want to temporarily disable the plugin. Can you add a settings page so I can do that? =
 
-No. Since the plugin has a very specific purpose, and I would like to keep setup as seamless as possible, it would be best if you deactivated the plugin if you wanted to temporary disable it.
+No. Since the plugin has a very specific purpose, and I would like to keep setup as seamless as possible, it would be best if you deactivated the plugin if you wanted to temporarily disable it.
 
 = I use another plugin to handle registrations to my WordPress site. Will you integrate with it? =
 
@@ -72,5 +72,8 @@ Stop Forum Spam is a third-party service that maintains a database of spam repor
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.1 =
+* No longer trust HTTP_X_FORWARDED_FOR, which can be spoofed 
+
+= 1.0.0 =
 * Initial release
