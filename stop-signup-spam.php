@@ -5,6 +5,7 @@ Description: Check user registration info against the Stop Forum Spam database b
 Version: 1.0.0
 Author: Leland Fiegel
 Author URI: https://leland.me/
+Text Domain: stop-signup-spam
 License: GPLv2 or later
 License URI: LICENSE
 */
@@ -82,15 +83,9 @@ function lelandf_is_signup_spam( $email, $ip ) {
  */
 function lelandf_stop_signup_spam_get_ip() {
 	if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-
-		// Check IP from share internet
 		$ip = $_SERVER['HTTP_CLIENT_IP'];
-
 	} elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-
-		// Ceck if IP is pass from proxy
 		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-
 	} else {
 		$ip = $_SERVER['REMOTE_ADDR'];
 	}
