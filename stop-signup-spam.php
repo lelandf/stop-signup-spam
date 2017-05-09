@@ -52,7 +52,7 @@ add_filter( 'rcp_user_registration_data', 'lelandf_stop_signup_spam_rcp' );
  */
 function lelandf_is_signup_spam( $email, $ip ) {
 	// Stop Forum Spam API URL
-	$url = 'http://api.stopforumspam.org/api';
+	$url = 'https://api.stopforumspam.org/api';
 
 	// Build data array (send email and IP address to Stop Forum Spam)
 	$data = array(
