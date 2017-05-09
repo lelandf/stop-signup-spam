@@ -3,7 +3,7 @@ Contributors: lelandf
 Tags: spam
 Requires at least: 2.7.0
 Tested up to: 4.7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: LICENSE
 
@@ -60,7 +60,7 @@ At this time, all this plugin does is check the registration email address and I
 
 If Stop Forum Spam reports a false negative, feel free to [report it](http://stopforumspam.com/add) to them so they can have a more accurate database.
 
-= Will your plugin ever do anything more than simply check email addresses against Stop Forum Spam’s database? =
+= Will your plugin ever do anything more than simply check email and IP addresses against Stop Forum Spam’s database? =
 
 As I discover new, accessible ways to thwart signup spam, I may amend this plugin to reflect those. In the meantime, if you have any ideas, I am not opposed to [pull requests](https://github.com/lelandf/stop-signup-spam).
 
@@ -71,6 +71,10 @@ No. It is probably best you block this traffic at the DNS level anyway. Services
 Stop Forum Spam is a third-party service that maintains a database of spam reports. Stop Signup Spam is a WordPress plugin that integrates with that service.
 
 == Changelog ==
+
+= 1.0.2 =
+
+Use HTTPS for Stop Forum Spam API URL to prevent HTTPS sites from throwing connection errors. Props: https://github.com/wolffe
 
 = 1.0.1 =
 * No longer trust HTTP_X_FORWARDED_FOR, which can be spoofed 

@@ -2,7 +2,7 @@
 /*
 Plugin Name: Stop Signup Spam
 Description: Check user registration info against the Stop Forum Spam database before allowing registration
-Version: 1.0.1
+Version: 1.0.2
 Author: Leland Fiegel
 Author URI: https://leland.me/
 Text Domain: stop-signup-spam
