@@ -3,7 +3,7 @@ Contributors: lelandf
 Tags: spam
 Requires at least: 2.7.0
 Tested up to: 4.7.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: LICENSE
 
@@ -19,6 +19,7 @@ At this time, Stop Signup Spam integrates with:
 
 * The core WordPress registration form
 * Restrict Content Pro
+* MemberPress
 
 By installing this plugin, you consent to an API call sent from your WordPress site to Stop Forum Spam after every attempted user registration. The API call includes the user’s email address and IP address.
 
@@ -71,6 +72,10 @@ No. It is probably best you block this traffic at the DNS level anyway. Services
 Stop Forum Spam is a third-party service that maintains a database of spam reports. Stop Signup Spam is a WordPress plugin that integrates with that service.
 
 == Changelog ==
+
+= 1.0.3 =
+
+Add MemberPress integration. Props: https://wordpress.org/support/users/cartpauj/
 
 = 1.0.2 =
 

@@ -2,7 +2,7 @@
 /*
 Plugin Name: Stop Signup Spam
 Description: Check user registration info against the Stop Forum Spam database before allowing registration
-Version: 1.0.2
+Version: 1.0.3
 Author: Leland Fiegel
 Author URI: https://leland.me/
 Text Domain: stop-signup-spam
@@ -46,6 +46,21 @@ function lelandf_stop_signup_spam_rcp( $user ) {
 	}
 }
 add_filter( 'rcp_user_registration_data', 'lelandf_stop_signup_spam_rcp' );
+
+function lelandf_stop_signup_spam_mepr( $errors ) {
+	$email = is_email( $_POST['user_email'] ) ? $_POST['user_email'] : false;
+
+	if ( $email !== false ) {
+		$ip = lelandf_stop_signup_spam_get_ip();
+
+		if ( lelandf_is_signup_spam( $email, $ip ) ) {
+			$errors[] = __( 'Sorry, but something went wrong. Please contact us for further assistance.', 'stop-signup-spam' );
+		}
+	}
+
+	return $errors;
+}
+add_filter( 'mepr-validate-signup', 'lelandf_stop_signup_spam_mepr' );
 
 /**
  * Conditional function to check for signup spam, so we don't have to repeat ourselves with every integration
