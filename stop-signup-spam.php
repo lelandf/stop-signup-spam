@@ -47,6 +47,21 @@ function lelandf_stop_signup_spam_rcp( $user ) {
 }
 add_filter( 'rcp_user_registration_data', 'lelandf_stop_signup_spam_rcp' );
 
+/**
+ * Adds integration with the Give Donation Plugin
+ * @url https://givewp.com/
+ */
+function lelandf_stop_signup_spam_give() {
+
+	$email = $_POST['give_user_email'];
+	$ip = lelandf_stop_signup_spam_get_ip();
+
+	if ( lelandf_is_signup_spam( $email, $ip ) ) {
+		give_set_error( 'likely_spammer', esc_html__( 'Cannot register. Please contact site administrator for assistance.', 'stop-signup-spam' ) );
+	}
+}
+add_action( 'give_pre_process_register_form', 'lelandf_stop_signup_spam_give' );
+
 function lelandf_stop_signup_spam_mepr( $errors ) {
 	$email = is_email( $_POST['user_email'] ) ? $_POST['user_email'] : false;
 
