@@ -67,10 +67,10 @@ function lelandf_stop_signup_spam_mepr( $errors ) {
 add_filter( 'mepr-validate-signup', 'lelandf_stop_signup_spam_mepr' );
 
 /**
- * Adds integration with Give
+ * Adds integration with Give Registration Shortcode
  * @url https://givewp.com/
  */
-function lelandf_stop_signup_spam_give() {
+function lelandf_stop_signup_spam_give_register() {
 	$email = is_email( $_POST['give_user_email'] ) ? $_POST['give_user_email'] : false;
 
 	if ( $email !== false ) {
@@ -81,7 +81,29 @@ function lelandf_stop_signup_spam_give() {
 		}
 	}
 }
-add_action( 'give_pre_process_register_form', 'lelandf_stop_signup_spam_give' );
+add_action( 'give_pre_process_register_form', 'lelandf_stop_signup_spam_give_register' );
+
+
+/**
+ * Adds integration with Give Donation Forms
+ * @url https://givewp.com/
+ */
+function lelandf_stop_signup_spam_give_donation($valid_data) {
+
+	$user = give_get_donation_form_user( $valid_data );
+
+	$email = is_email( $user['user_email'] ) ? $user['user_email'] : false;
+
+	if ( $email !== false ) {
+		$ip = lelandf_stop_signup_spam_get_ip();
+
+		if ( lelandf_is_signup_spam( $email, $ip ) ) {
+			give_set_error( 'give-payment-spam-donor', esc_html__( 'Cannot donate. Please contact site administrator for assistance.', 'stop-signup-spam' ), $user['user_email'], $user['user_email'] );
+		}
+	}
+
+}
+add_action( 'give_checkout_error_checks', 'lelandf_stop_signup_spam_give_donation' );
 
 /**
  * Conditional function to check for signup spam, so we don't have to repeat ourselves with every integration
