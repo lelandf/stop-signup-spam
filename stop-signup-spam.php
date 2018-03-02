@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: Stop Signup Spam
+Plugin Name: Stop Donor Spam
 Description: Check user registration info against the Stop Forum Spam database before allowing registration
-Version: 1.1.0
-Author: Leland Fiegel
-Author URI: https://leland.me/
-Text Domain: stop-signup-spam
+Version: 1.2.0
+Author: Matt Cromwell
+Author URI: https://www.mattcromwell.com
+Text Domain: stop-donor-spam
 License: GPLv2 or later
 License URI: LICENSE
 */
@@ -20,7 +20,7 @@ function lelandf_stop_signup_spam_wp( $errors, $sanitized_user_login, $user_emai
 
 		// Add error if conditional returns true
 		if ( lelandf_is_signup_spam( $user_email, $ip ) ) {
-			$errors->add( 'likely_spammer', __( '<strong>ERROR</strong>: Cannot register. Please contact site administrator for assistance.', 'stop-signup-spam' ) );
+			$errors->add( 'likely_spammer', __( '<strong>ERROR</strong>: Cannot register. Please contact site administrator for assistance.', 'stop-donor-spam' ) );
 		}
 	}
 
@@ -39,7 +39,7 @@ function lelandf_stop_signup_spam_rcp( $user ) {
 
 		// Add error if conditional returns true
 		if ( lelandf_is_signup_spam( $user['email'], $ip ) ) {
-			rcp_errors()->add( 'likely_spammer', __( 'Cannot register. Please contact site administrator for assistance.', 'stop-signup-spam' ), 'register' );
+			rcp_errors()->add( 'likely_spammer', __( 'Cannot register. Please contact site administrator for assistance.', 'stop-donor-spam' ), 'register' );
 		}
 
 		return $user;
@@ -58,7 +58,7 @@ function lelandf_stop_signup_spam_mepr( $errors ) {
 		$ip = lelandf_stop_signup_spam_get_ip();
 
 		if ( lelandf_is_signup_spam( $email, $ip ) ) {
-			$errors[] = __( 'Sorry, but something went wrong. Please contact us for further assistance.', 'stop-signup-spam' );
+			$errors[] = __( 'Sorry, but something went wrong. Please contact us for further assistance.', 'stop-donor-spam' );
 		}
 	}
 
@@ -77,7 +77,7 @@ function lelandf_stop_signup_spam_give_register() {
 		$ip = lelandf_stop_signup_spam_get_ip();
 
 		if ( lelandf_is_signup_spam( $email, $ip ) ) {
-			give_set_error( 'likely_spammer', esc_html__( 'Cannot register. Please contact site administrator for assistance.', 'stop-signup-spam' ) );
+			give_set_error( 'likely_spammer', esc_html__( 'Cannot register. Please contact site administrator for assistance.', 'stop-donor-spam' ) );
 		}
 	}
 }
@@ -94,16 +94,48 @@ function lelandf_stop_signup_spam_give_donation($valid_data) {
 
 	$email = is_email( $user['user_email'] ) ? $user['user_email'] : false;
 
-	if ( $email !== false ) {
-		$ip = lelandf_stop_signup_spam_get_ip();
+	$ip = lelandf_stop_signup_spam_get_ip();
+
+	if ( is_email($user['user_first']) ) {
+		give_set_error( 'give-payment-spam-donor', esc_html__( 'Cannot donate. Please contact site administrator for assistance.', 'stop-donor-spam' ), $user['user_email'], $user['user_email'] );
+	} elseif ( $email !== false ) {
 
 		if ( lelandf_is_signup_spam( $email, $ip ) ) {
-			give_set_error( 'give-payment-spam-donor', esc_html__( 'Cannot donate. Please contact site administrator for assistance.', 'stop-signup-spam' ), $user['user_email'], $user['user_email'] );
+			give_set_error( 'give-payment-spam-donor', esc_html__( 'Cannot donate. Please contact site administrator for assistance.', 'stop-donor-spam' ), $user['user_email'], $user['user_email'] );
 		}
 	}
 
 }
 add_action( 'give_checkout_error_checks', 'lelandf_stop_signup_spam_give_donation' );
+
+
+function myprefix123_give_donations_save_custom_fields( $payment_id, $payment_data ) {
+
+	$ip = lelandf_stop_signup_spam_get_ip();
+
+	if ( isset( $ip ) ) {
+
+		add_post_meta( $payment_id, 'give_donor_ip_address', $ip );
+	}
+}
+
+add_action( 'give_insert_payment', 'myprefix123_give_donations_save_custom_fields', 10, 2 );
+
+function myprefix123_give_donations_purchase_details( $payment_id ) {
+	$ip = get_post_meta( $payment_id, 'give_donor_ip_address', true );
+	if ( $ip ) : ?>
+
+		<div id="give-ip-details" class="postbox">
+			<h3 class="hndle"><?php esc_html_e( 'Donor IP Address:', 'give' ); ?></h3>
+			<div class="inside" style="padding-bottom:10px;">
+				<p><strong><a href="https://whatismyipaddress.com/ip/<?php echo $ip;?>" aria-label="<?php echo __('View Details about this IP address', 'stop-donor-spam'); ?>" target="_blank" rel="noopener"><?php echo $ip; ?></a></strong></p>
+				<p><em><?php echo __('Do you suspect this donation as spam? <a href="https://stopforumspam.com/add" target="_blank" rel="noopener">Click here</a> to report it to the Stop Signup Spam website to prevent this from happening again.', 'stop-donor-spam')?></em></p>
+			</div>
+		</div>
+
+	<?php endif;
+}
+add_action( 'give_view_order_details_billing_before', 'myprefix123_give_donations_purchase_details', 10, 1 );
 
 /**
  * Conditional function to check for signup spam, so we don't have to repeat ourselves with every integration
