@@ -109,7 +109,7 @@ function lelandf_stop_signup_spam_give_donation($valid_data) {
 add_action( 'give_checkout_error_checks', 'lelandf_stop_signup_spam_give_donation' );
 
 
-function myprefix123_give_donations_save_custom_fields( $payment_id, $payment_data ) {
+function sds_give_donations_save_custom_fields( $payment_id, $payment_data ) {
 
 	$ip = lelandf_stop_signup_spam_get_ip();
 
@@ -119,23 +119,23 @@ function myprefix123_give_donations_save_custom_fields( $payment_id, $payment_da
 	}
 }
 
-add_action( 'give_insert_payment', 'myprefix123_give_donations_save_custom_fields', 10, 2 );
+add_action( 'give_insert_payment', 'sds_give_donations_save_custom_fields', 10, 2 );
 
-function myprefix123_give_donations_purchase_details( $payment_id ) {
+function sds_give_donations_purchase_details( $payment_id ) {
 	$ip = get_post_meta( $payment_id, 'give_donor_ip_address', true );
 	if ( $ip ) : ?>
 
 		<div id="give-ip-details" class="postbox">
 			<h3 class="hndle"><?php esc_html_e( 'Donor IP Address:', 'give' ); ?></h3>
 			<div class="inside" style="padding-bottom:10px;">
-				<p><strong><a href="https://whatismyipaddress.com/ip/<?php echo $ip;?>" aria-label="<?php echo __('View Details about this IP address', 'stop-donor-spam'); ?>" target="_blank" rel="noopener"><?php echo $ip; ?></a></strong></p>
+				<p><strong><a href="https://whatismyipaddress.com/ip/<?php echo $ip;?>" aria-label="<?php echo __('View Details about this IP address', 'stop-donor-spam'); ?>" target="_blank" rel="noopener" class="hint--top hint--bounce"><?php echo $ip; ?></a></strong></p>
 				<p><em><?php echo __('Do you suspect this donation as spam? <a href="https://stopforumspam.com/add" target="_blank" rel="noopener">Click here</a> to report it to the Stop Signup Spam website to prevent this from happening again.', 'stop-donor-spam')?></em></p>
 			</div>
 		</div>
 
 	<?php endif;
 }
-add_action( 'give_view_order_details_billing_before', 'myprefix123_give_donations_purchase_details', 10, 1 );
+add_action( 'give_view_order_details_billing_before', 'sds_give_donations_purchase_details', 10, 1 );
 
 /**
  * Conditional function to check for signup spam, so we don't have to repeat ourselves with every integration
