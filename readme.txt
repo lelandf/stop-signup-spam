@@ -1,4 +1,4 @@
-=== Stop Signup Spam ===
+=== Stop Donor Spam ===
 Contributors: webdevmattcrom
 Tags: spam
 Requires at least: 2.7.0
