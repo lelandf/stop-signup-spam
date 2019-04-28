@@ -1,9 +1,9 @@
-=== Stop Signup Spam ===
-Contributors: lelandf
+=== Stop Donor Spam ===
+Contributors: webdevmattcrom
 Tags: spam
 Requires at least: 2.7.0
 Tested up to: 4.7.5
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: LICENSE
 
@@ -73,6 +73,11 @@ No. It is probably best you block this traffic at the DNS level anyway. Services
 Stop Forum Spam is a third-party service that maintains a database of spam reports. Stop Signup Spam is a WordPress plugin that integrates with that service.
 
 == Changelog ==
+
+= 1.2.0 =
+* Changed name to "Stop Donor Spam" to continue this fork independently
+* Added validation on first name field to prevent email addresses from being used as the first name
+* Added IP address collection on the donation details screen with links to Stop Registratration Spam website and IP info to act on potentially fraudulent donations.
 
 = 1.1.0 =
 
